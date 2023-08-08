@@ -115,6 +115,11 @@
     // 视频下载
     kolentoDownload.onclick=function(){
         kolPop('功能开发中~')
+
+        var videoUrl = 'path_to_your_video.mp4';
+        var fileName = 'fileName';
+        downloadVideo(videoUrl,fileName);
+        
     }
 
     kolentoOther.onclick=function(){
@@ -149,6 +154,15 @@
                 btnGroup[3].className='kolento-tips kolento-btn'
             }
         }
+    }
+
+    function downloadVideo(url,fileName) {
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
     }
 
     function kolPop(msg){
