@@ -118,7 +118,7 @@
 
         var videoUrl = 'path_to_your_video.mp4';
         var fileName = 'fileName';
-        downloadVideo(videoUrl,fileName);
+        downloadUrlFile('https://www.baidu.com/img/flexible/logo/pc/result.png',fileName)
         
     }
 
@@ -156,6 +156,7 @@
         }
     }
 
+    // 预览下载
     function downloadVideo(url,fileName) {
         var a = document.createElement('a');
         a.href = url;
@@ -164,6 +165,47 @@
         a.click();
         document.body.removeChild(a);
     }
+
+
+
+    // 下载文件
+    function downloadUrlFile(url) {
+        url= url.replace(/\\/g, '/');
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.responseType = 'blob';
+        xhr.onload = () => {
+        if (xhr.status === 200) {
+            // 获取文件blob数据并保存
+            var fileName = getFileName(url);
+            saveAs(xhr.response, fileName);
+        }
+        };
+
+        xhr.send();
+    }
+   
+    //  data 文件的blob数据
+    function saveAs(data, name) {
+        var urlObject = window.URL || window.webkitURL || window;
+        var export_blob = new Blob([data]);
+        var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a')
+        save_link.href = urlObject.createObjectURL(export_blob);
+        save_link.download = name;
+        save_link.click();
+    }
+   
+    function getFileName(url){
+        var num = url.lastIndexOf('/')+1
+        var fileName = url.substring(num)
+        console.log('num',num)
+        console.log('fileName',fileName);
+        //把参数和文件名分割开
+        fileName = decodeURI(fileName.split("?")[0]);
+        return fileName;
+    }
+
+     
 
     function kolPop(msg){
         let pop = document.getElementById('kolento-common-pop');
