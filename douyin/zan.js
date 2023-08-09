@@ -114,11 +114,17 @@
 
     // 视频下载
     kolentoDownload.onclick=function(){
-        kolPop('功能开发中~')
+        
 
-        var videoUrl = 'https://www.baidu.com/img/flexible/logo/pc/result.png';
-        var fileName = 'fileName';
-        downloadUrlFile(videoUrl,fileName)
+        let wurl = window.location.href;
+        if(wurl){
+            var videoUrl = 'https://www.baidu.com/img/flexible/logo/pc/result.png';
+            var fileName = 'fileName';
+            downloadUrlFile(videoUrl,fileName)
+        }else{
+            kolPop('请在详情页使用下载功能')
+        }
+
         
     }
 
