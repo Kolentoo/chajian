@@ -116,9 +116,9 @@
     kolentoDownload.onclick=function(){
         kolPop('功能开发中~')
 
-        var videoUrl = 'path_to_your_video.mp4';
+        var videoUrl = 'https://www.baidu.com/img/flexible/logo/pc/result.png';
         var fileName = 'fileName';
-        downloadUrlFile('https://www.baidu.com/img/flexible/logo/pc/result.png',fileName)
+        downloadUrlFile(videoUrl,fileName)
         
     }
 
